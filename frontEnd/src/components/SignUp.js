@@ -1,46 +1,52 @@
 import React, { Component } from 'react';
+import { useHistory } from 'react-router';
 import "../componentsCss/SignInUp.css"
 
 
-class SignUp extends Component {
-    state = {  }
-    render() { 
+function SignUp(props){
+    var state = {  }
+    var history=useHistory();
+    function callhandler()
+    {
+        history.push("/signin")
+    }
         return ( <React.Fragment>
 
             <div   class="outer outer-r">
             <div  class='container container-r'>
-                <form action='/user/createuser' method='post'>
+                <form onSubmit={(e)=>{props.createU(e,callhandler)}} >
                     <h2 style={{color:"white"}}>Sign Up</h2>
                     <div class='input'>
-                        <i class="fas fa-user"></i>
+                       
                         <input class="input_tag" name='name' placeholder="Username" type='text' />
                     </div>
                 <div class='input'>
-                    <i class="fas fa-at"></i>
+                   
                     <input name='email' class="input_tag" placeholder="Email" type='email'/ >
                 </div>
                 <div class='input'>
-                    <i class="fas fa-phone"></i>
+                    
                     <input name='mobile' class="input_tag" placeholder="Mobile Number" type='text'/ >
                 </div>
                 <div class='input'>
                      
-                    <i class="fas fa-key"></i> <input class="input_tag" type='password' placeholder="Password"  name='password'/>
+                   <input class="input_tag" type='password' placeholder="Password"  name='password'/>
                 </div> 
                 <div class='input'>
                      
-                    <i class="fas fa-key"></i><input type='password' class="input_tag" placeholder="Confirm-password" name='re_password'/>
+                    <input type='password' class="input_tag" placeholder="Confirm-password" name='re_password'/>
                 </div> 
               
-                <div><small>Already have an Account?<a href='/user/signin' style={{color:"yellow"}}> click here</a>                </small></div>
-                <div class='input inline'><button class="btn_">Sign Up</button></div>
-            </form>
+                <div><small>Already have an Account?<a style={{color:"yellow"}}> click here</a>                </small></div>
+                <div class='input'>
+		<button class="submit" type="submit"   class="btn_">Signin</button>
+	</div>            </form>
             </div>
             </div>
             
             
                     </React.Fragment>);
-    }
+  
 }
  
 export default SignUp;

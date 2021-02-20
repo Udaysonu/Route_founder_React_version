@@ -19,7 +19,7 @@ class NavBar extends Component {
                             <a class="nav_link" ><span class="hover_span">Bookings</span></a>
                             <a class="nav_link" ><span class="hover_span">Customer Care</span></a>
 
-                            <a class="nav_link"  ><img style={{width:'20px' ,height: '20px'}} src="<%=user.avatar%>"/>  <span class="hover_span">Update Profile</span></a>
+                            <a class="nav_link"  >  <span class="hover_span"> Profile</span></a>
                             <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/signin'} >Sign In</Link></span></a>
 
                             <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/signup'} >Sign Up</Link></span></a>
