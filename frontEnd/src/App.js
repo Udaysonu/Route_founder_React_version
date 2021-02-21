@@ -8,19 +8,12 @@ import SignIn from "./components/SignIn.js"
 import SignUp from "./components/SignUp.js"
 import Home from "./components/Home.js"
 import axios from 'axios';
-  
 import {browserHistory} from 'react-router'
- 
-
-
 // import { checkAuth } from '../../backEnd/controllers/userController';
-
 class App extends Component {
-   
-     
-    state={
-      user: null
-
+       state={
+      user: null,
+      paths:[]
     }
    
    
@@ -32,21 +25,20 @@ class App extends Component {
     <React.Fragment >
 
       <Router>
-      <NavBar state={this.state.user}/>
+      <NavBar   user={[this.state.user]} />
          <Route path="/" exact={true} render={
            ()=>{
              if(this.state.user==null)
              {
-               return  <SignIn/>;
+               return  <SignIn checkC={this.checkCredentials}/>;
              }
-             return <Home/>
-
+             return <Home  searchhandler={this.searchhandler} paths={this.state.paths} />
                 }} />
 
          <Route path="/signin" exact={true} render={
             ()=>{
               if(this.state.user!=null){
-                return <Home/>
+                return <Home searchhandler={this.searchhandler} paths={this.state.paths}/>
               }
              return <SignIn checkC={this.checkCredentials}/>}
             }/>
@@ -54,11 +46,11 @@ class App extends Component {
          <Route path="/signup" exact={true} render={
             ()=>{
               if(this.state.user!=null){
-                return <Home/>
+                return <Home searchhandler={this.searchhandler} paths={this.state.paths}/>
               }
               return <SignUp createU={this.createUser}/>
               }
-              
+
               }/>
 
         
@@ -114,6 +106,20 @@ class App extends Component {
   })
 
  }
+
+
+ searchhandler=(e)=>
+ {
+  e.preventDefault();
+  console.log(e.target.source.value,e.target.destination.value)
+  axios.post("http://localhost:8000/algo/path",{source:e.target.source.value,destination:e.target.destination.value}).then(res=>{
+  this.state.paths=res.data
+  this.setState({})
+  console.log(this.state.paths.length)
+  })
+  // console.log(e.target.source.value,e.target.destination.value)
+ }
+ 
 }
  
 export default App;
