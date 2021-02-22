@@ -10,7 +10,7 @@ class Home extends Component {
   
   <div class='outer outer-r b-r' class='inline' style={{height:'auto'}}>
   
-  <div class='container container-r b-r dd bootstrap-iso'>
+  <div  class='container container-r b-r dd bootstrap-iso'>
    
       <form onSubmit={this.props.searchhandler}>
           <div class='input inline inline-r '> 
@@ -62,7 +62,9 @@ class Home extends Component {
       
   
   </div>
-  <div class="search_details_card sticky">
+  <div>
+
+    <div class="search_details_card sticky">
       <div class="details_table ">
         <div> Start Time         </div>
         <div>  End Time       </div>
@@ -73,7 +75,9 @@ class Home extends Component {
         <div>    Book Now !    </div>
       </div>
     </div>
+    
     {this.props.paths.length!=0 && this.props.paths.map((path)=><SearchBlock path={path} />)}
+  </div>
 
   </main>
          );

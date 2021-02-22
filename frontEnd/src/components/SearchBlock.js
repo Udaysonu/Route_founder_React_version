@@ -3,10 +3,10 @@ class SearchBlock extends Component {
     state = {  }
     render() { 
         return (  
-            <div>
+            <div class="">
                
 
-                <div class="search_details_card">
+                <div class="search_details_card container container-r">
                 <div ><h3 style={{color:"red"}}>{this.props.path.paths}</h3></div>
 
                 <div class="details_table"> 

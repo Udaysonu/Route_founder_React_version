@@ -350,6 +350,12 @@ b1.addedge("Amritsar","Delhi",2000,200,"12:30","14:30")
 b1.addedge("Delhi","Mumbai",4000,600,"23:43","1:40")
 b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
 b1.addedge("Mumbai","Delhi",2000,100,"5:50","7:43")
+b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
+
+b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
+b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
+b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
+
 // b1.addedge("Noida","Gurgaon",2000,80,"6:20","7:20")
 // b1.addedge("Gurgaon","Delhi",1500,79,"8:50","7:30")
 b1.addedge("Delhi",'Hyderabad',5500,700,"9:45","4:43")

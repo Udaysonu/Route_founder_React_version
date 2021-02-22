@@ -7,6 +7,7 @@ import Route from 'react-router-dom/Route'
 import SignIn from "./components/SignIn.js"
 import SignUp from "./components/SignUp.js"
 import Home from "./components/Home.js"
+import Dashboard from "./components/dashboard.js"
 import axios from 'axios';
 import {browserHistory} from 'react-router'
 // import { checkAuth } from '../../backEnd/controllers/userController';
@@ -25,7 +26,7 @@ class App extends Component {
     <React.Fragment >
 
       <Router>
-      <NavBar   user={[this.state.user]} />
+      <NavBar   user={[this.state.user]} logout={this.logout} />
          <Route path="/" exact={true} render={
            ()=>{
              if(this.state.user==null)
@@ -34,7 +35,14 @@ class App extends Component {
              }
              return <Home  searchhandler={this.searchhandler} paths={this.state.paths} />
                 }} />
-
+         <Route path="/dashboard" exact={true} render={
+           ()=>{
+             if(this.state.user==null)
+             {
+               return  <SignIn checkC={this.checkCredentials}/>;
+             }
+             return <Dashboard  searchhandler={this.searchhandler} paths={this.state.paths} />
+                }} />
          <Route path="/signin" exact={true} render={
             ()=>{
               if(this.state.user!=null){
@@ -120,6 +128,14 @@ class App extends Component {
   // console.log(e.target.source.value,e.target.destination.value)
  }
  
+ logoutHandler=(e,cb)=>
+ {
+   console.log("logout called")
+  axios.get("http://localhost:8000/user/logout").then(e=>{
+  cb();
+  })
+ }
+
 }
  
 export default App;

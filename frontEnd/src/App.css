@@ -11,8 +11,7 @@ html {
 } */
 body{
     /* background-image:url("../images//aeroplane2.jpg"); */
-    color:white;
-    background-position: center;
+     background-position: center;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -22,7 +21,7 @@ h2{font-weight: bolder;
     padding-top: 1.3rem;
 }
 .outer{
-    height:80%;
+     height:80%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -118,7 +117,7 @@ small{
 /*scroll bar */
 /* width */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 1px;
   }
   
   /* Track */
