@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+// import "../componentsCss/all_flight_paths.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class AddPath  extends Component {
     state = {  }
     render() { 
-        return ( <div style="display: flex;flex-direction: row;justify-content: center;">
+        return ( <div style={{display: "flex" ,flexDirection:"row" ,justifyContent:"center"}}>
     
-        <div style="width:60vw">
+        <div style={{width:"60vw"}}>
             <h1>Add New Path +</h1>
-            <form action='/dashboard/createpath' method='post'> 
+            <form onSubmit={this.props.callback} > 
     
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="formGroupExampleInput">Source Name</label>
                     <input name='source' type="text" class="form-control" id="formGroupExampleInput" placeholder="Source Name"/>
                 </div>
@@ -34,7 +37,7 @@ class AddPath  extends Component {
                     <label for="formGroupExampleInput">end_time:</label>
                     <input name='end_time' type="text" class="form-control" id="formGroupExampleInput" placeholder="End Time of Journey"/>
                 </div>
-                <button >Submit</button>
+                <button class="btn-warning" type="submit">Submit</button>
             </form>
     
         </div>

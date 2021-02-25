@@ -11,12 +11,14 @@ html {
 } */
 body{
     background-image:url("/aeroplane2.jpg");
-    color:white;
+    color:white !important;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
 }
-
+a{
+    text-decoration: none  !important;
+}
 h2{font-weight: bolder;
     text-align: center;
     padding-top: 1.3rem;

@@ -76,7 +76,7 @@ class Home extends Component {
       </div>
     </div>
     
-    {this.props.paths.length!=0 && this.props.paths.map((path)=><SearchBlock path={path} />)}
+    {this.props.paths.length!=0 && this.props.paths.map((path)=><SearchBlock bookingHandler={this.props.bookingHandler} user={this.props.user} path={path}  />)}
   </div>
 
   </main>

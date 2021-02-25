@@ -22,15 +22,14 @@ function NavBar(props)  {
                         </a>
                         <a class="nav_link" href="/user/routesearch"> 
                             <span ><Link className="hover_span"  to={'/'}>Home</Link></span> </a>
-                            {props.user[0]!=null ?
+                            {props.user[0]!=null  && props.user[0]!='null' ?
                            <span> <a class="nav_link" ><span class="hover_span">Bookings</span></a>
-                                                      {(props.user[0]!=null && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/dashboard'} >Dashboard</Link></span></a>}
+                                                      {(props.user[0]!=null  && props.user[0]!='null' && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link style={{textDecoration:'none'}} className="hover_span" to={'/dashboard'} >Dashboard</Link></span></a>}
 
                             <a class="nav_link" ><span class="hover_span">Customer Care</span></a>
  
-                            <a class="nav_link"  >  <span class="hover_span">{props.user[0]!=null ?props.user[0].name:"false"} Profile</span></a>
-
-                            <a class="nav_link" type="button" ><span class="hover_span btn_link_red"  ><Link  className="hover_span">Log Out</Link></span></a>
+                            <a class="nav_link"  >  <span class="hover_span">{props.user[0]!=null && props.user[0]!='null'  ?props.user[0].name:"false"} Profile</span></a>
+                             <a class="nav_link" type="button" ><span class="hover_span btn_link_red" type="button"   ><button class="btn-danger" onClick={()=>{props.logout(logout)}}>Log Out</button></span></a>
                               </span>      :<span>
                             <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/signin'} >Sign In</Link></span></a>
 

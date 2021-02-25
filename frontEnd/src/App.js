@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import NavBar from "./components/NavBar"
 // import background from "/aeroplane2.jpg"
 import {BrowserRouter, BrowserRouter as Router,Link,Redirect,useHistory} from 'react-router-dom'
@@ -9,10 +10,13 @@ import SignUp from "./components/SignUp.js"
 import Home from "./components/Home.js"
 import Dashboard from "./components/dashboard.js"
 import axios from 'axios';
-import {browserHistory} from 'react-router'
+import AllFlights from './components/all_fight_paths';
+import AddPath from "./components/addpath";
+ 
 // import { checkAuth } from '../../backEnd/controllers/userController';
 class App extends Component {
        state={
+         token:null,
       user: null,
       paths:[]
     }
@@ -26,47 +30,80 @@ class App extends Component {
     <React.Fragment >
 
       <Router>
-      <NavBar   user={[this.state.user]} logout={this.logout} />
-         <Route path="/" exact={true} render={
+      <NavBar   user={[this.state.user]} logout={this.logoutHandler} />
+         <Route path="/"  exact={true} render={
            ()=>{
-             if(this.state.user==null)
+             if(this.state.user==null  )
              {
-               return  <SignIn checkC={this.checkCredentials}/>;
+              
+               return  <Redirect to={"/signin"}/>
              }
-             return <Home  searchhandler={this.searchhandler} paths={this.state.paths} />
+             console.log(this.state.user,this.state.user==null,"098",typeof(this.state.user))
+             return <Home user={[this.state.user]} bookingHandler={this.bookingHandler} searchhandler={this.searchhandler} paths={this.state.paths} />
                 }} />
-         <Route path="/dashboard" exact={true} render={
+         <Route path="/dashboard" strict exact={true} render={
            ()=>{
              if(this.state.user==null)
              {
-               return  <SignIn checkC={this.checkCredentials}/>;
+               return <Redirect to={"/signin"}/>
              }
              return <Dashboard  searchhandler={this.searchhandler} paths={this.state.paths} />
                 }} />
          <Route path="/signin" exact={true} render={
             ()=>{
-              if(this.state.user!=null){
-                return <Home searchhandler={this.searchhandler} paths={this.state.paths}/>
+              if(this.state.user!=null ){
+                return <Redirect to={"/"}/>
               }
              return <SignIn checkC={this.checkCredentials}/>}
             }/>
 
          <Route path="/signup" exact={true} render={
             ()=>{
-              if(this.state.user!=null){
-                return <Home searchhandler={this.searchhandler} paths={this.state.paths}/>
+              if(this.state.user!=null  ){
+                return <Redirect to={"/"}/>
               }
               return <SignUp createU={this.createUser}/>
               }
-
               }/>
 
-        
 
+  <Route path="/dashboard/bookings" exact={true} render={
+            ()=>{
+           return <h1>Bookings</h1>
+              // return <BookingDashboard createU={this.createUser}/>
+              }
+              }/>
+
+
+  <Route path="/dashboard/flightpaths" exact={true} render={
+            ()=>{
+              return <AllFlights  />
+              // return <h1>Welcome</h1>
+              }
+
+              }/>
+  
+  <Route path="/dashboard/addpath" exact={true} render={
+            ()=>{
+              // return <h1>add paths</h1>
+              return <AddPath callback={this.addPathHandler}/>
+              }
+
+              }/>
+ 
+  <Route path="/dashboard/updateflightpath" exact={true} render={
+            ()=>{
+               return <AllFlights createU={this.createUser}/>
+              }
+
+              }/>
       </Router>
     </React.Fragment>
   )
  }
+ componentDidMount=()=>{
+   this.getInitialState();
+  }
 
 
  checkCredentials=(e,cb)=>
@@ -74,30 +111,29 @@ class App extends Component {
    e.preventDefault();   
   //  console.log(e.target.email.value);
     axios.post("http://localhost:8000/user/signin",{email:e.target.email.value,password:e.target.password.value}).then(res=>{
-      console.log(res.data,this.state.user,"************");
-      this.state.user=res.data.user;
-    this.setState({})
-    console.log("----------coorect")
-    // cb();
+      this.state.token=res.data.token;
+      this.setSelectedOption(this.state.token)
+       axios.post("http://localhost:8000/user/getuser",{ headers: {
+        'Authorization':this.state.token
+      }}).then(res=>{
+        this.state.user=res.data.user;
+        this.setState({})
+      }).catch(err=>{console.log(err)})
+     // cb();
     }).catch(err=>{
       console.log("error occured",err);
       return false;
-    })
-    
- 
-     
- }
+    })  
+}
 
 
   
 
 
- createUser=(e,cb)=>
+createUser=(e,cb)=>
  {
    e.preventDefault();
-   console.log(e.target.re_password.value,"*********************************************************")
-
-   axios.post("http://localhost:8000/user/signup",{email:e.target.email.value,
+    axios.post("http://localhost:8000/user/signup",{email:e.target.email.value,
    password:e.target.password.value,
    name:e.target.name.value,
    mobile:e.target.mobile.value,
@@ -109,33 +145,85 @@ class App extends Component {
      console.log('createduser');
        cb()
     }
- 
     console.log("unable to create user");
   })
-
  }
 
 
  searchhandler=(e)=>
  {
   e.preventDefault();
-  console.log(e.target.source.value,e.target.destination.value)
-  axios.post("http://localhost:8000/algo/path",{source:e.target.source.value,destination:e.target.destination.value}).then(res=>{
+   axios.post("http://localhost:8000/algo/path",{source:e.target.source.value,destination:e.target.destination.value}).then(res=>{
   this.state.paths=res.data
   this.setState({})
   console.log(this.state.paths.length)
   })
-  // console.log(e.target.source.value,e.target.destination.value)
- }
- 
- logoutHandler=(e,cb)=>
- {
-   console.log("logout called")
-  axios.get("http://localhost:8000/user/logout").then(e=>{
-  cb();
-  })
- }
-
 }
  
+ logoutHandler=(cb)=>
+ {
+   this.setSelectedOption(null);
+  this.getInitialState();
+  cb()
+  this.state.token=null;
+  this.state.user=null;
+  window.localStorage.setItem( 'token', null);
+  this.setState({});
+ }
+
+addPathHandler=(e)=>{
+e.preventDefault();
+var req={source:e.target.source.value,destination:e.target.destination.value,start_time:e.target.start_time.value,end_time:e.target.end_time.value,cost:e.target.cost.value,distance:e.target.distance.value}
+  console.log(req);
+  axios.post("http://localhost:8000/algo/addpath",req).then(res=>{
+    console.log(res.data);
+    this.setState({})
+  })}
+
+ 
+
+ getInitialState= () =>{
+  this.state.token = JSON.parse(window.localStorage.getItem( 'token' )) || null;
+  console.log(this.state.token,this.state.user,"getInitialState")
+  axios.post("http://localhost:8000/user/getuser",{ headers: {
+    'Authorization':this.state.token
+  }}).then(res=>{
+    this.state.user=res.data.user;
+    this.setState({})
+  }).catch(err=>{console.log(err)})
+}
+
+setSelectedOption=function( option ){
+  window.localStorage.setItem( 'token', JSON.stringify(option));
+  this.setState({});
+}
+
+
+
+bookingHandler=(e)=>{
+  e.preventDefault();
+ var book={user_id:e.target.user_id.value
+    ,cost:e.target.cost.value,
+    passengers:e.target.passengers.value,
+    path:e.target.path.value,
+   
+    start_time:e.target.start_time.value,end_time:e.target.end_time.value,journey_time:e.target.journey_time.value,wait_time:e.target.wait_time.value,travel_time:e.target.travel_time.value}
+  console.log(book,this.state.user)
+  // console.log("booking clicked",e.target)
+  axios.post("http://localhost:8000/book/order",{headers: {
+    'Authorization':this.state.token},booking:book}).then(res=>{
+    console.log(res.data);
+  })
+}
+
+
+
+
+
+}
+
+
+
+
+
 export default App;

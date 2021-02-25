@@ -412,22 +412,22 @@ module.exports.addPath=function(req,res)
 {
     if(b1.mapi[req.body.source]==undefined || b1.mapi[req.body.destination]==undefined){
         console.log("error in creating the path")
-            req.flash("error",'Error in creating the Path')
-            return res.redirect("back");
+            // req.flash("error",'Error in creating the Path')
+            return res.json({isadded:false});
         
     }
    
     PathInfo.create(req.body,function(err,path){
         if(err){
-            req.flash("error",'Error in creating the Path')
+            // req.flash("error",'Error in creating the Path')
             console.log("Error in creating the path");
-            return res.redirect("back");
+            return res.json({isadded:false});
         }
         b1.addedge(path.source,path.destination,path.cost,path.distance,path.start_time,path.end_time)
 
-        req.flash("success","Path created successfully!")
+        // req.flash("success","Path created successfully!")
         console.log("Path Created Succesfully");
-        return res.redirect("back");
+        return res.json({isadded:true})
     })   
 }
 

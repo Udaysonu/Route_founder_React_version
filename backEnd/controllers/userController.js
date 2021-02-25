@@ -1,5 +1,6 @@
 //requiring the required models
 const User=require("../models/usermodel");
+
 // const mailer=require("../mailer/nodemailer")
 
 //FUNCTIONS ARE WRITTEN IN THE FOLLOWING ORDER
@@ -14,11 +15,15 @@ const User=require("../models/usermodel");
 //9->password_recovery
 //signin controller 
 
+ 
+
 module.exports.checkAuth=function(req,res)
 {
+    console.log(res.user,res.user)
   console.log(req.isAuthenticated())
     if(req.isAuthenticated())
     {
+        console.log(req.user,"!!!!!!!!!!!!!!!!!!")
         return res.json({isavailable:true,user:req.user});
     }
     else{
