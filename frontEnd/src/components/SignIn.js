@@ -2,6 +2,7 @@ import React, { Component, useImperativeHandle } from 'react';
 import "../componentsCss/SignInUp.css"
 import {BrowserRouter as Router,Link,Redirect,useHistory} from 'react-router-dom'
 
+
 function SignIn (props) {
     var state = {  };	 
 	var	history= useHistory()
@@ -9,7 +10,6 @@ function SignIn (props) {
 	{
 		history.push("/home")
 	}
-    
         return (<React.Fragment>
 
 <div class="outer-r outer" >

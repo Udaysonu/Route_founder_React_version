@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../componentsCss/NavBar.css" 
 import {BrowserRouter as Router,Link,useHistory} from 'react-router-dom'
-
+import "../componentJs/header.js"
 function NavBar(props)  {
    var state = {  }
    var history=useHistory();

@@ -30,10 +30,10 @@ module.exports.showBookings=function(req,res)
 
 //function to create booking in te database;
 module.exports.orderbook=function(req,res)
-{    console.log("book now",req.user)
+{    console.log("book now",req.body.booking)
     if(req.user)
     {
-        req.body.date=req.cookies.chosenDate
+        // req.body.booking.date=req.cookies.chosenDate
     //create booking with given details
     Booking.create(req.body.booking,function(err,book)
     {   
@@ -48,11 +48,12 @@ module.exports.orderbook=function(req,res)
         //then we have to add this booking into the booking list of the user who created it
         if(book)
         {   
+            console.log(req.user._id)
             //finding the user using authentication id
-            User.findById(req.user.id,function(err,user)
+            User.findById(req.user._id,function(err,user)
             {
                 
-                console.log("user controller")
+                console.log("user controller",user,err)
                 //pushing the booking into his booking records
                 user.bookings.push(book);
                 //saving the database

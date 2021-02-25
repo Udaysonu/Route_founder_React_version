@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import "../componentsCss/home.css" 
 import SearchBlock from "../components/SearchBlock"
+import "../componentJs/search.js"
+
 class Home extends Component {
-    state = {  }
+    state = {  count:0}
     render() { 
         return ( 
 
@@ -51,7 +53,7 @@ class Home extends Component {
           </select></div>
           <br/>
   
-          <div class='input inline inline-r'><span style={{color:"black"}}>Date:</span> <input required type="date" name="date" min="2020-10-15" max="2020-11-20" id="datepicker"/></div>
+          <div class='input inline inline-r'><span style={{color:"black"}}>Date:</span> <input   type="date" name="date" min="2020-10-15" max="2020-11-20" id="datepicker"/></div>
   
          <div class='input inline' >
           <button type="submit"  class="btn_ pad">Search</button>
@@ -76,9 +78,32 @@ class Home extends Component {
       </div>
     </div>
     
-    {this.props.paths.length!=0 && this.props.paths.map((path)=><SearchBlock bookingHandler={this.props.bookingHandler} user={this.props.user} path={path}  />)}
+    {this.props.paths.length!=0 &&(  this.props.paths.map((path)=><SearchBlock count={this.state.count++} bookingHandler={this.props.bookingHandler} user={this.props.user} path={path}  />))}
   </div>
-
+  <script>
+  {/* var btns=document.getElementsByClassName("submit");
+  for(let btn of btns){
+    btn.addEventListener("click",function(e){
+    e.preventDefault();
+    console.log(btn.getAttribute("value"))
+    let btnvalue=parseInt(btn.getAttribute("value"));
+    console.log(btnvalue);
+    console.log("clicked");
+   
+    let cost=document.getElementById(`cost_${btnvalue}`);
+    console.log(cost)
+    let passengers=document.getElementById(`passengers_${btnvalue}`)
+    cost.value=parseInt(cost.getAttribute("saver"))*parseInt(passengers.value)
+    console.log(cost.value,passengers.value)
+   var ans=window.confirm("The total amout payable is "+cost.value+ ". Are you sure you want to continue?")
+    if(!ans)
+    {
+      e.preventDefault();
+    }
+    
+  })
+ } */}
+                </script>
   </main>
          );
     }

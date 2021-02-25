@@ -24,9 +24,22 @@ class SearchBlock extends Component {
                 <option>6</option>
                 <option>7</option>
                 </select> </div> */}
-                <form  onSubmit={this.props.bookingHandler} method='post'>
+                <form  onSubmit={(e)=>{
+                        e.preventDefault();
+                       var saver=document.getElementById("cost_"+this.props.count).getAttribute('saver');
+                        var cost=document.getElementById("cost_"+this.props.count).getAttribute('value');
+                        var pass=document.getElementById("passengers_"+this.props.count) ;
+                        var cost=parseInt(saver)*parseInt(pass.value);
+                        console.log(saver,pass.value,cost)
+                        e.target.totalprice=cost
+                        var ans=window.confirm("The total amout payable is "+cost+ ". Are you sure you want to continue?")
+                        if(!ans)
+                        {
+                            return;
+                        }                    
+                    this.props.bookingHandler(e)}} method='post'>
                  
-                <select  class="input_tag pad" style={{backgroundColor:'white'}} id="passengers_<%=count%>" name='passengers'>
+                <select  class="input_tag pad" style={{backgroundColor:'white'}}   id={"passengers_"+this.props.count} name='passengers'>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -47,8 +60,8 @@ class SearchBlock extends Component {
                 <input hidden requied name="travel_time" value={this.props.path.travelling_time}/>
                 <input hidden required name="user_id" value={this.props.user[0]._id}/>
                 <input hidden required  name="path" value={this.props.path.paths}/>
-                <input hidden required name="cost"   value={this.props.path.totalprice}/>
-                <button  type='submit' value="<%=count%>" class="btn btn-danger submit">Book Now!</button> 
+                <input hidden required name="cost" saver={this.props.path.totalprice}   id={"cost_"+this.props.count}  value={this.props.path.totalprice}/>
+                <button  type='submit' value={this.props.count} id={this.props.user[0]._id} class="btn btn-danger submit">Book Now!</button> 
                 </form>
  
                 {/* {this.props.path.waiting_time} */}
@@ -58,8 +71,9 @@ class SearchBlock extends Component {
                 
                 </div>
                 </div>
+               
             </div>
-
+           
         );
     }
 }
