@@ -4,6 +4,8 @@ const jwt=require('jsonwebtoken');
 const User =require("../models/usermodel");
 
 router.post("/order",authenticationTocken,bookController.orderbook);
+router.post('/showbooking',authenticationTocken,bookController.showBookings)
+router.post('/allbooking',authenticationTocken,bookController.showAllBookings)
 
 function authenticationTocken(req,res,next){
     console.log(req.body)

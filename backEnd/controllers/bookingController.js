@@ -9,15 +9,18 @@ var Booking=require("../models/bookingmodel");
 //funciton to return all boookings 
 module.exports.showBookings=function(req,res)
 {   
-    if(req.isAuthenticated()){
-        Booking.find({user_id:req.user.id}).sort({createdAt:-1}).exec(function(err,bookings)
+    if(req.user){
+        console.log("(((((((((((((((((((((((((((((((((")
+        Booking.find({user_id:req.user._id}).sort({createdAt:-1}).exec(function(err,bookings)
         {
             if(err)
             {
                 console.log("Error in bookingcontroller->showBookings",err);
             }
-            res.render('check_bookings',{bookings:bookings});
+            // console.log(bookings)
+            res.json({bookings:bookings})
         })
+        
 
     }
     else
@@ -25,7 +28,30 @@ module.exports.showBookings=function(req,res)
         res.redirect("/user/signin")
     }
 }
+module.exports.showAllBookings=function(req,res)
+{              
+     console.log("ente-----------------------------------------s",req.user)
 
+    if(req.user){
+        Booking.find({}).sort({createdAt:-1}).exec(function(err,bookings)
+        {
+            console.log(err,bookings)
+            if(err)
+            {
+                console.log("Error in bookingcontroller->showBookings",err);
+            }
+            console.log("ente----------------------------------------e-")
+            // console.log(bookings)
+            res.json({bookings:bookings})
+        })
+        
+
+    }
+    else
+    {
+        res.redirect("/user/signin")
+    }
+}
 
 
 //function to create booking in te database;

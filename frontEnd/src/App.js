@@ -12,7 +12,8 @@ import Dashboard from "./components/dashboard.js"
 import axios from 'axios';
 import AllFlights from './components/all_fight_paths';
 import AddPath from "./components/addpath";
- 
+import BookingDashboard from "./components/bookingDashboard.js"
+import DashboardBooking from "./components/dashboardBooking.js"
 // import { checkAuth } from '../../backEnd/controllers/userController';
 class App extends Component {
        state={
@@ -39,7 +40,7 @@ class App extends Component {
                return  <Redirect to={"/signin"}/>
              }
              console.log(this.state.user,this.state.user==null,"098",typeof(this.state.user))
-             return <Home user={[this.state.user]} bookingHandler={this.bookingHandler} searchhandler={this.searchhandler} paths={this.state.paths} />
+             return <Home user={[this.state.user]}  bookingHandler={this.bookingHandler} searchhandler={this.searchhandler} paths={this.state.paths} />
                 }} />
          <Route path="/dashboard" strict exact={true} render={
            ()=>{
@@ -67,13 +68,20 @@ class App extends Component {
               }/>
 
 
-  <Route path="/dashboard/bookings" exact={true} render={
+  <Route path="/dashboard/booking" exact={true} render={
             ()=>{
-           return <h1>Bookings</h1>
-              // return <BookingDashboard createU={this.createUser}/>
+          //  return <h1>Bookings</h1>
+          
+              return <BookingDashboard token={this.state.token} createU={this.createUser}/>
               }
               }/>
-
+  <Route path="/dashboard/allbooking" exact={true} render={
+            ()=>{
+          //  return <h1>Bookings</h1>
+          
+              return <DashboardBooking token={this.state.token} />
+              }
+              }/>
 
   <Route path="/dashboard/flightpaths" exact={true} render={
             ()=>{
@@ -200,19 +208,21 @@ setSelectedOption=function( option ){
 
 
 
-bookingHandler=(e)=>{
+bookingHandler=(e,cb)=>{
   e.preventDefault();
  var book={user_id:e.target.user_id.value
-    ,cost:e.target.cost.value,
+    ,cost:e.target.totalprice.value,
     passengers:e.target.passengers.value,
     path:e.target.path.value,
    
     start_time:e.target.start_time.value,end_time:e.target.end_time.value,journey_time:e.target.journey_time.value,wait_time:e.target.wait_time.value,travel_time:e.target.travel_time.value}
-  console.log(book,this.state.user)
+  // console.log(book,this.state.user)
+  console.log("enered handler",e.target.cost)
   // console.log("booking clicked",e.target)
   axios.post("http://localhost:8000/book/order",{headers: {
     'Authorization':this.state.token},booking:book}).then(res=>{
-    console.log(res.data);
+      console.log("redirecting")
+      cb()
   })
 }
 

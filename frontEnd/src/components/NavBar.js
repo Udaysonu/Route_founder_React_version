@@ -23,7 +23,7 @@ function NavBar(props)  {
                         <a class="nav_link" href="/user/routesearch"> 
                             <span ><Link className="hover_span"  to={'/'}>Home</Link></span> </a>
                             {props.user[0]!=null  && props.user[0]!='null' ?
-                           <span> <a class="nav_link" ><span class="hover_span">Bookings</span></a>
+                           <span>  <Link className="hover_span" to={"/dashboard/booking"}>Bookings</Link> 
                                                       {(props.user[0]!=null  && props.user[0]!='null' && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link style={{textDecoration:'none'}} className="hover_span" to={'/dashboard'} >Dashboard</Link></span></a>}
 
                             <a class="nav_link" ><span class="hover_span">Customer Care</span></a>
