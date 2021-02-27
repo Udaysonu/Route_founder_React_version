@@ -2,6 +2,7 @@
 
 const router=require("express").Router();
 const userConroller=require("../controllers/userController.js")
+const dashboardController=require("../controllers/dashboardController.js")
 const passport=require("../config/passport")
 const jwt=require('jsonwebtoken');
 const User =require("../models/usermodel");
@@ -13,6 +14,7 @@ router.get("/checkauth",userConroller.checkAuth)
 //     failureRedirect:"back"
 // }),userConroller.checkAuth)
  
+router.get('/getallusers',dashboardController.showUsers)
 
 router.post('/getuser',authenticationTocken)
 router.post('/signin',(req,res)=>{

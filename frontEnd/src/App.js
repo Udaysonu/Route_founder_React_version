@@ -14,6 +14,7 @@ import AllFlights from './components/all_fight_paths';
 import AddPath from "./components/addpath";
 import BookingDashboard from "./components/bookingDashboard.js"
 import DashboardBooking from "./components/dashboardBooking.js"
+import UserDashboard from "./components/dashboardUsers.js"
 // import { checkAuth } from '../../backEnd/controllers/userController';
 class App extends Component {
        state={
@@ -98,7 +99,11 @@ class App extends Component {
               }
 
               }/>
- 
+ <Route path="/dashboard/users" strict exact={true} render={
+           ()=>{
+              return <UserDashboard/>
+
+} } />
   <Route path="/dashboard/updateflightpath" exact={true} render={
             ()=>{
                return <AllFlights createU={this.createUser}/>

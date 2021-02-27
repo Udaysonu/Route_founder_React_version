@@ -160,16 +160,16 @@ module.exports.deleteUser=async function(req,res){
     
    try{
         //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-        return res.redirect("back");
-        }
+        // if(req.user.email!="udaysonubakka123@gmail.com")
+        // {
+        //     req.flash("error",'Unauthorized Access!!');
+        // return res.redirect("back");
+        // }
 
 
        //deleting the required user
        //finding the user
-        user=await User.findById(req.params.id);
+        user=await User.findById(req.body.id);
 
         //deleting all the bookings of the user
         for(let booking of user.bookings){
@@ -177,14 +177,16 @@ module.exports.deleteUser=async function(req,res){
         }
         
         //deleting the user itself
-        await User.findByIdAndDelete(req.params.id)
+        await User.findByIdAndDelete(req.body.id)
 
-        req.flash("success","User Deleted!");
-        return res.redirect("/dashboard/allusers");
-    
+        // req.flash("success","User Deleted!");
+        // return res.redirect("/dashboard/allusers");
+        return res.json({isdeleted:true});
    }
    catch(err){
        console.log("Error in dashboardController->deleteUser",err);
+       return res.json({isdeleted:false})
+
    }
 }
 
@@ -251,13 +253,14 @@ module.exports.specificPath=async function(req,res){
 //function to get specific user
 module.exports.specificUser=async function(req,res){
     try
-    {   
+    {  
+        console.log("entered specific user") 
         //Authorization check
-            if(req.user.email!="udaysonubakka123@gmail.com")
-            {
-                req.flash("error",'Unauthorized Access!!');
-            return res.redirect("back");
-            }
+            // if(req.user.email!="udaysonubakka123@gmail.com")
+            // {
+            //     req.flash("error",'Unauthorized Access!!');
+            // return res.redirect("back");
+            // }
             var details={};
             //small check to remove undefined while searching
             if(req.body.name!=""){
@@ -270,7 +273,7 @@ module.exports.specificUser=async function(req,res){
             //fetch users with given detais
             var users=await User.find(details);  
 
-            res.render("users_dashboard",{users:users});
+            res.json({users:users});
 
     }
     catch(err)
@@ -289,11 +292,11 @@ module.exports.updateUser=async function(req,res){
     try
     {    
         //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-           return res.redirect("back");
-        }
+        // if(req.user.email!="udaysonubakka123@gmail.com")
+        // {
+        //     req.flash("error",'Unauthorized Access!!');
+        //    return res.redirect("back");
+        // }
         //since our data is multi-part and contains files we cannot get data using normal req.body
         //so we user this User.uploadedAvatar to get the data
         User.uploadedAvatar(req,res,async function(err){
@@ -318,8 +321,8 @@ module.exports.updateUser=async function(req,res){
            
             user.save();
           
-            req.flash('success','Profile Updated Succesfully');
-            return res.redirect("/dashboard/allusers/");
+            // req.flash('success','Profile Updated Succesfully');
+            return res.json({updated:true});
 
         })
         
@@ -340,19 +343,19 @@ module.exports.showUsers=async function(req,res)
 {
     try
     {   //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-           return res.redirect("back");
-        }
+        // if(req.user.email!="udaysonubakka123@gmail.com")
+        // {
+        //     req.flash("error",'Unauthorized Access!!');
+        //    return res.redirect("back");
+        // }
         //fetch all users from database
         var users=await User.find({});
-        req.flash("info","Fetched Users!")
-        res.render("users_dashboard",{users:users});
+  
+        return res.json({users:users});
     }
     catch(err)
     {
-        console.log("Error in dashboardController->showUsers",err);
+        // console.log("Error in dashboardController->showUsers",err);
     }
 }
 

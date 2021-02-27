@@ -4,5 +4,8 @@ const router=require("express").Router();
 router.use("/user",require("./userRouter.js"));
 router.use("/algo",require("./algorithms.js"));
 router.use("/book",require("./bookRouter.js"));
- 
-module.exports=router;
+router.use("/dashboard",require("./dashboardRouter.js"));
+
+module.exports=router; 
+
+
