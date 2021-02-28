@@ -26,10 +26,10 @@ module.exports.deletePath=async function(req,res)
     try
     {   
         //Authorization check
-       if(req.user.email=="udaysonubakka123@gmail.com")
-        {
+    //    if(req.user.email=="udaysonubakka123@gmail.com")
+    //     {
                 //checking if current path exists or not
-            var path= await Paths.findById(req.params.id);
+            var path= await Paths.findById(req.body.id);
             
             //if path exists then delte the path in database and
             //delete the edge in algorithm in algocontroller
@@ -39,23 +39,23 @@ module.exports.deletePath=async function(req,res)
                 
                     //deleting edge in algo controller
                     await algoController.deletePath(path.source,path.destination);
-                    req.flash("success","Path deleted successfully!!"); 
-            
+                    // req.flash("success","Path deleted successfully!!"); 
+                return res.json({})
             }
-            else{
-                    req.flash("error","Error in deleting Path!!");
+            else{ return res.json({})
+                    // req.flash("error","Error in deleting Path!!");
             }
-            return res.redirect("/dashboard/flightroutes/");
-       }
-       else
-       {
-           req.flash("error","UnAuthorized Access");
-           return res.redirect("back");
-       }
+            // return res.redirect("/dashboard/flightroutes/");
+    //    }
+    //    else
+    //    {
+    //        req.flash("error","UnAuthorized Access");
+    //        return res.redirect("back");
+    //    }
     }
     //raise error if encountered
     catch(err)
-    {
+    { return res.json({})
                 console.log("Error in dashboardContrller->deletePath",err);
     }
 
@@ -72,17 +72,19 @@ module.exports.updatePath=async function(req,res)
 {
     try 
     {   
+        console.log(req.body)
         //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-           return res.redirect("back");
-        }
+        // if(req.user.email!="udaysonubakka123@gmail.com")
+        // {
+        //     req.flash("error",'Unauthorized Access!!');
+        //    return res.redirect("back");
+        // }
                 //If either Source or Destination is empty then raise the error and return;
         if(mapi[req.body.source]==undefined || mapi[req.body.destination]==undefined)
-        {             
-            req.flash("error","Error in updating the path!!");
-            return res.redirect("/dashboard/flightroutes/");
+        {          
+            return res.json({})   
+            // req.flash("error","Error in updating the path!!");
+            // return res.redirect("/dashboard/flightroutes/");
         }
 
 
@@ -106,19 +108,17 @@ module.exports.updatePath=async function(req,res)
                 
                 //changing values in algorithm in algocontroller
                 await algoController.updatePath(req.body)
-                req.flash("success","Path updated successfully !");
-        }
+                return res.json({})
+            }
         else
         {
-            req.flash("error","Error in updating path !");
+            return res.json({})
         }
 
-        return res.redirect("/dashboard/flightroutes/");
-    }
-
+     }
     catch(err)
     {
-            console.log("Error in dashboardController->updatePath",err);
+        return res.json({})
     }
     
 }
@@ -134,19 +134,19 @@ module.exports.showPaths=async function(req,res){
     try
     {   
         //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-           return res.redirect("back");
-        }
+        // if(req.user.email!="udaysonubakka123@gmail.com")
+        // {
+        //     req.flash("error",'Unauthorized Access!!');
+        //    return res.redirect("back");
+        // }
 
         //fetch all paths
         var paths=await Paths.find({});
        
-        res.render("all_flight_paths",{paths:paths});
+        res.json({paths:paths});
     }
     catch(err)
-    {
+    {   res.json({paths:[]})
         console.log("Error in dashboardController->showPaths",err);
     }
    
@@ -219,6 +219,7 @@ module.exports.addpath=function(req,res){
 module.exports.specificPath=async function(req,res){
    try 
    {    
+       console.log(req.body)
         // //Authorization check
         // if(req.user.email!="udaysonubakka123@gmail.com")
         // {
@@ -237,12 +238,13 @@ module.exports.specificPath=async function(req,res){
         
         //fetch paths upon given details
         var paths=await Paths.find(details);
-            
-        return res.json({isadded:true});
+        console.log(paths)
+        return res.json({paths:paths});
    }
    catch(err)
    {
-       console.log("Error in dashboardController->specificPath",err);
+    console.log("Error in dashboardControler->specificPath",err);
+       return res.json({paths:[]});
    }
     
 }

@@ -26,9 +26,8 @@ function NavBar(props)  {
                            <span>  <Link className="hover_span" to={"/dashboard/booking"}>Bookings</Link> 
                                                       {(props.user[0]!=null  && props.user[0]!='null' && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link style={{textDecoration:'none'}} className="hover_span" to={'/dashboard'} >Dashboard</Link></span></a>}
 
-                            <a class="nav_link" ><span class="hover_span">Customer Care</span></a>
- 
-                            <a class="nav_link"  >  <span class="hover_span">{props.user[0]!=null && props.user[0]!='null'  ?props.user[0].name:"false"} Profile</span></a>
+  
+                            <a class="nav_link"  >  <span class="hover_span"><Link className="hover_span" to={'/user/userprofile'}>{props.user[0]!=null && props.user[0]!='null'  ?props.user[0].name:"false"} Profile </Link> </span></a>
                              <a class="nav_link" type="button" ><span class="hover_span btn_link_red" type="button"   ><button class="btn-danger" onClick={()=>{props.logout(logout)}}>Log Out</button></span></a>
                               </span>      :<span>
                             <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/signin'} >Sign In</Link></span></a>
@@ -45,6 +44,5 @@ function NavBar(props)  {
         {
             console.log("welcome")
         }
-    
 }
 export default NavBar;

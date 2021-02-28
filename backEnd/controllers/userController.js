@@ -199,14 +199,14 @@ module.exports.update=async function(req,res){
 
 //function to update user
 module.exports.update_user= async function(req,res){
-     
+    console.log('update user caleld-------------')
     
     try{
         //since our form is multi-part data so it could not be read by 
         //normal req.body so we have to add this function to load multipart data
         await  User.uploadedAvatar(req,res,async function(err)
         {
-
+            console.log(req.file)
 
             //returning if password and re-password does not match
             if(req.body.password!=req.body.re_password){
@@ -216,7 +216,7 @@ module.exports.update_user= async function(req,res){
             }          
             
             //finding the user in database
-            var user=await User.findById(req.user.id)
+            var user=await User.findById(req.user._id)
 
             //updating the user details
             user.name=req.body.name;
@@ -232,9 +232,10 @@ module.exports.update_user= async function(req,res){
            
             //save the changes of user in database 
             user.save();
-           
-            req.flash('success','Profile Updated Succesfully');
-            return res.redirect('back');
+         
+            // req.flash('success','Profile Updated Succesfully');
+            // return res.redirect('back');
+            return res.json({isupdated:true})
          
         })
          
@@ -242,6 +243,7 @@ module.exports.update_user= async function(req,res){
     catch(err)
     {
         console.log("Error in usercontroller->update_user",err);
+        return res.json({isupdated:false});
     }
      
 }

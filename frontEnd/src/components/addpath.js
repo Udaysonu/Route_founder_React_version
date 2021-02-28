@@ -9,35 +9,45 @@ class AddPath  extends Component {
     
         <div style={{width:"60vw"}}>
             <h1>Add New Path +</h1>
-            <form onSubmit={this.props.callback} > 
+            <form onSubmit={(e)=>{
+                this.props.callback(e);
+                e.preventDefault()
+                var allinputs=document.getElementsByClassName("clean");
+                for(let i=0;i<allinputs.length;i++)
+                {
+                    allinputs[i].value=""
+                    console.log(allinputs[i])
+                }
+                document.getElementById("pathadded_flash").style.visibility='visible';
+            }} > 
     
                 <div class="form-group" >
                     <label for="formGroupExampleInput">Source Name</label>
-                    <input name='source' type="text" class="form-control" id="formGroupExampleInput" placeholder="Source Name"/>
+                    <input name='source' type="text" class="form-control clean" onChange={this.onchange} id="formGroupExampleInput" placeholder="Source Name"/>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Destination Name</label>
-                    <input name='destination' type="text" class="form-control" id="formGroupExampleInput" placeholder="Destination Name"/>
+                    <input name='destination' type="text" class="form-control clean" onChange={this.onchange}  id="formGroupExampleInput" placeholder="Destination Name"/>
                 </div>
     
                 <div class="form-group">
                     <label for="formGroupExampleInput">Cost:</label>
-                    <input name='cost' type="number" class="form-control" id="formGroupExampleInput" placeholder="Journey Cost"/>
+                    <input name='cost' type="number" class="form-control clean" onChange={this.onchange}  id="formGroupExampleInput" placeholder="Journey Cost"/>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Distance:</label>
-                    <input name='distance' type="number" class="form-control" id="formGroupExampleInput" placeholder="Distance between Source and Destination"/>
+                    <input name='distance' type="number" class="form-control clean" onChange={this.onchange} id="formGroupExampleInput" placeholder="Distance between Source and Destination"/>
                 </div>
     
                 <div class="form-group">
                     <label for="formGroupExampleInput">Start Time:</label>
-                    <input name='start_time' type="text" class="form-control" id="formGroupExampleInput" placeholder="Start Time of Journey"/>
+                    <input name='start_time' type="text" class="form-control clean" onChange={this.onchange}  id="formGroupExampleInput" placeholder="Start Time of Journey"/>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">end_time:</label>
-                    <input name='end_time' type="text" class="form-control" id="formGroupExampleInput" placeholder="End Time of Journey"/>
+                    <input name='end_time' type="text" class="form-control clean" onChange={this.onchange} id="formGroupExampleInput" placeholder="End Time of Journey"/>
                 </div>
-                <button class="btn-warning" type="submit">Submit</button>
+                <button class="btn-warning"  type="submit">Submit</button><h3 id="pathadded_flash" style={{visibility:'hidden'}}>Path Added</h3>
             </form>
     
         </div>
@@ -45,6 +55,9 @@ class AddPath  extends Component {
     
     
     </div> );
+    }
+    onchange=()=>{
+        document.getElementById("pathadded_flash").style.visibility='hidden';
     }
 }
  

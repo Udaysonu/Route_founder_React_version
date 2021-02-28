@@ -38,20 +38,19 @@ import React, { Component } from 'react';
                 enctype="multipart/form-data"    >
                   <span style={{visibility:'hidden'}} id={"message_"+this.props.user._id}>Updated Successful</span>
             <table class="table table-striped card_list">
-      
                 <thead>
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name:</th>
                     <th scope="col" ><input type='text' name='name'  defaultValue={this.props.user.name}/></th>
-                    <input type="text" name="user_id" hidden defaultValue={this.props.user._id}/>
+                    <input type="text" name="user_id" hidden value={this.props.user._id}/>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
                     <td>Email:</td>
-                    <td><input type='text' name='email' defaultValue={this.props.user.email}/></td>
+                    <td><input type='text' name='email' value={this.props.user.email}/></td>
                    
                   </tr>
                   <tr>
@@ -120,6 +119,8 @@ import React, { Component } from 'react';
 
       })
     }
+
+    
 }
  
 export default SingleBlock;

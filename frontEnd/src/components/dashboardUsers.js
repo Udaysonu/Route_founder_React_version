@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import SingleBlock from "../components/singleBlock.js"
 import "../componentsCss/all_flight_paths.css"
- 
 class UsersDashboard extends Component {
     state = { users:[] }
     render() { 

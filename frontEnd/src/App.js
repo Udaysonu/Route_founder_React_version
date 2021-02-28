@@ -10,11 +10,13 @@ import SignUp from "./components/SignUp.js"
 import Home from "./components/Home.js"
 import Dashboard from "./components/dashboard.js"
 import axios from 'axios';
-import AllFlights from './components/all_fight_paths';
+import AllFlights from './components/dashboardPaths';
 import AddPath from "./components/addpath";
 import BookingDashboard from "./components/bookingDashboard.js"
 import DashboardBooking from "./components/dashboardBooking.js"
 import UserDashboard from "./components/dashboardUsers.js"
+import UserProfile from "./components/userprofile.js"
+import Chatbox from "./components/chatbox.js"
 // import { checkAuth } from '../../backEnd/controllers/userController';
 class App extends Component {
        state={
@@ -107,6 +109,19 @@ class App extends Component {
   <Route path="/dashboard/updateflightpath" exact={true} render={
             ()=>{
                return <AllFlights createU={this.createUser}/>
+              }
+
+              }/>
+<Route path="/user/userprofile" exact={true} render={
+            ()=>{
+               return <UserProfile createU={this.state.user}/>
+              }
+
+              }/>
+
+<Route path="/user/chatbox" exact={true} render={
+            ()=>{
+               return <Chatbox createU={this.state.user}/>
               }
 
               }/>
