@@ -1,7 +1,7 @@
 //import required modules
 var User=require("../models/usermodel");
 var Booking=require("../models/bookingmodel");
-// var nodemailer=require("../mailer/nodemailer");
+var nodemailer=require("../mailer/nodemailer");
 
 
 
@@ -87,7 +87,7 @@ module.exports.orderbook=function(req,res)
                 // req.flash("success","Successfully Booked! Ticket sent to your Email!!");
                 // if(user)
                 // {
-                // nodemailer.booking_done({user:{path:book.path,email:req.user.email,name:req.user.name,ticket:book.id,passengers:book.passengers,cost:book.cost}});
+                nodemailer.booking_done({user:{path:book.path,email:req.user.email,name:req.user.name,ticket:book.id,passengers:book.passengers,cost:book.cost}});
                 // }
             });
 

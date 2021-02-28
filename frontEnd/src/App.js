@@ -16,7 +16,7 @@ import BookingDashboard from "./components/bookingDashboard.js"
 import DashboardBooking from "./components/dashboardBooking.js"
 import UserDashboard from "./components/dashboardUsers.js"
 import UserProfile from "./components/userprofile.js"
-import Chatbox from "./components/chatbox.js"
+import ForgotPassword from "./components/forgotPassword.js"
 // import { checkAuth } from '../../backEnd/controllers/userController';
 class App extends Component {
        state={
@@ -119,9 +119,9 @@ class App extends Component {
 
               }/>
 
-<Route path="/user/chatbox" exact={true} render={
+<Route path="/user/forgot_password" exact={true} render={
             ()=>{
-               return <Chatbox createU={this.state.user}/>
+               return <ForgotPassword createU={this.state.user}/>
               }
 
               }/>

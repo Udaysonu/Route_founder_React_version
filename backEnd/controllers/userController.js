@@ -1,8 +1,8 @@
 //requiring the required models
 const User=require("../models/usermodel");
 
-// const mailer=require("../mailer/nodemailer")
-
+const mailer=require("../mailer/nodemailer")
+// 
 //FUNCTIONS ARE WRITTEN IN THE FOLLOWING ORDER
 //1->signin
 //2->signup
@@ -100,7 +100,7 @@ module.exports.createuser=async function(req,res){
 
         if(user!=null)
         {
-            // mailer.signup_done({user:req.body});
+            mailer.signup_done({user:req.body});
             
             // req.flash("success","User added successfully!!");
             return res.json({isavailable:true});
@@ -253,7 +253,8 @@ module.exports.update_user= async function(req,res){
 module.exports.password_recovery=async function(req,res)
 {   
     var user=await User.findOne({email:req.body.email});
-    // await mailer.password_recovery({user:user});
+    await mailer.password_recovery({user:user});
+    // console.log('passwrod recovery called',user,)
     // req.flash("success","Password sent to your email ; Please Check");
-    return res.redirect("/user/signin");
+    return res.json({sent:true});
 }

@@ -14,7 +14,7 @@ function NavBar(props)  {
         return (  
             <React.Fragment >
             <nav class="header_nav">
-                <span>goBIGgo</span>
+                <span><b style={{padding:'3px',border:'2px double white',borderRadius:"10px"}}>AeroBook</b></span>
                 
                     <span class="left_nav" id="left_nv">
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">

@@ -22,14 +22,13 @@ function SignIn (props) {
 	<div class='input'>		 
 		<b style={{color: "black"}}></b><input class="input_tag" type='password' placeholder="Password" name='password'/>
 	</div>
-	<div><small>Forgot Password?<a href='/user/forgot_password' style={{color:"yellow"}}> click here</a>                </small></div>
+	<div><small>Forgot Password?<a   style={{color:"yellow"}}> <Link to={'/user/forgot_password'}>click here</Link></a>                </small></div>
 
-	<div><small>Don't have an account?<a  style={{color:"yellow"}}> click here</a>                </small></div>
+	<div><small>Don't have an account?<a  style={{color:"yellow"}}><Link style={{color:"yellow"}} to={"/signup"}>click here</Link> </a>                </small></div>
 	<div class='input'>
 		<button class="submit" type='submit' class="btn_" > SignIn   </button>
 	</div>
-	<div style={{textAlign: 'center'}}> Or Login with<br/><a  ><h5 className="google_Auth">Google</h5></a> </div>
-</form>
+ </form>
 </div>
 </div>
         </React.Fragment> );
