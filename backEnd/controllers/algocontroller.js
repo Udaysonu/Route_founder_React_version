@@ -345,31 +345,7 @@ b1=new Graph(15);
 // b1=new Graph(10)
 this.mapi={"Hyderabad":0,"Mumbai":1,"Delhi":2,"Jaipur":3,"Banglore":4,"Kochi":5,"Chennai":6,"Bhopal":7,"Amritsar":8,"Guwahati":9,"Srinagar":10,"Amaravati":11,"Vishakhapatanam":12,"Agra":13};
 
-b1.addedge("Delhi","Amritsar",2000,200,"1:30","2:30")
-b1.addedge("Amritsar","Delhi",2000,200,"12:30","14:30")
-b1.addedge("Delhi","Mumbai",4000,600,"23:43","1:40")
-b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
-b1.addedge("Mumbai","Delhi",2000,100,"5:50","7:43")
-b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
-
-b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
-b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
-b1.addedge("Mumbai","Delhi",4000,600,"4:32","5:40")
-
-// b1.addedge("Noida","Gurgaon",2000,80,"6:20","7:20")
-// b1.addedge("Gurgaon","Delhi",1500,79,"8:50","7:30")
-b1.addedge("Delhi",'Hyderabad',5500,700,"9:45","4:43")
-b1.addedge("Hyderabad","Delhi",5500,700,"8:40","10:40")
-b1.addedge("Mumbai","Chennai",3200,350,"3:30","5:00")
-b1.addedge("Mumbai","Bhopal",3000,320,"3:21","3:42")
-b1.addedge("Bhopal","Chennai",2300,200,"7:24","6:23")
-// b1.addedge("Chennai","Pudichery",1000,60,"8:09","10:30")
-b1.addedge("Hyderabad","Banglore",1500,200,"4:23","5:23")
-b1.addedge("Banglore","Chennai",2000,350,"9:43","11:30")
-b1.addedge('Chennai',"Banglore",3800,1078,"23:00","4:20")
-// b1.addedge("Pudichery","Hyderabad",2400,130,"0:00","6:49") 
-b1.getallpath("Chennai","Banglore") 
-
+ 
 function loadpath()
 {
     PathInfo.find({},function(err,paths){
@@ -509,22 +485,22 @@ module.exports.path_eval=function(req,res)
 
 
 //function to showpaths 
-module.exports.showPaths=function(req,res){
-    try{
-        //this attribute will get all the paths in the algorithm
-        var paths=b1.get_all_flight_paths();
-        res.render("all_flight_paths",{paths:paths});
-    }
-    catch(err)
-    {
-        console.log("Error in algocontroller",err);
-    }
-}
+// module.exports.showPaths=function(req,res){
+//     try{
+//         //this attribute will get all the paths in the algorithm
+//         var paths=b1.get_all_flight_paths();
+//         res.render("all_flight_paths",{paths:paths});
+//     }
+//     catch(err)
+//     {
+//         console.log("Error in algocontroller",err);
+//     }
+// }
 
 
 //funciton to remove paths
-module.exports.removePath=function(req,res)
-{
-    //pass the function 
-    //there is not error in function
-}
+// module.exports.removePath=function(req,res)
+// {
+//     //pass the function 
+//     //there is not error in function
+// }

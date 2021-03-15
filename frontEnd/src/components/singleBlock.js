@@ -56,26 +56,28 @@ import React, { Component } from 'react';
                   <tr>
                     <th scope="row">2</th>
                     <td>Password:</td>
-                    <td><input type='text' name='password' defaultValue={this.props.user.password}/></td>
+                    <td><input type='text' name='password' placeholder={this.props.user.password}/></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Mobile:</td>
-                    <td><input type='text' name='mobile' defaultValue={this.props.user.mobile}/></td>
+                    <td><input type='text' name='mobile' placeholder={this.props.user.mobile}/></td>
                   </tr>
                 
-                  <tr>
+                  {/* <tr>
                     <th scope="row">3</th>
                     <td>Avatar:</td>
                     <td><input class='input_tag' name='avatar' type="file"  placeholder="file" / ></td>
                     
-                  </tr>
+                  </tr> */}
                   <tr>
                   <td></td>
-                    <th scope='row'>          <button class='btn btn-info'>Update User</button>          </th>
+                    <th scope='row'>         
+                     <button class='btn btn-info'>Update User</button>     
+                          </th>
                     
-                    <td>   <button id="delete_btn" value={this.props.user._id} onClick={this.deleteclicked}  class='btn btn-info'>  Delete User </button>
+                    <td>   <button id="delete_btn" class='btn btn-danger' value={this.props.user._id} onClick={this.deleteclicked}   >  Delete User </button>
               </td>
                   </tr>
                 </tbody>

@@ -11,7 +11,7 @@ const { json } = require("body-parser");
 router.post("/signup",userConroller.createuser);
 router.post("/logout",userConroller.logout);
 router.get("/checkauth",userConroller.checkAuth)
-router.post("/update_user",authenticationTocken2,userConroller.update_user)
+router.post("/update_user",userConroller.update_user)
 router.post("/forgot_password",userConroller.password_recovery)
 // router.post("/signin",passport.authenticate('local',{
 //     failureRedirect:"back"

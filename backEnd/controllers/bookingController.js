@@ -25,7 +25,7 @@ module.exports.showBookings=function(req,res)
     }
     else
     {
-        res.redirect("/user/signin")
+        res.json({bookings:[]})
     }
 }
 module.exports.showAllBookings=function(req,res)
@@ -49,7 +49,7 @@ module.exports.showAllBookings=function(req,res)
     }
     else
     {
-        res.redirect("/user/signin")
+        res.json({bookings:[]})
     }
 }
 

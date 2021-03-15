@@ -55,8 +55,9 @@ module.exports.deletePath=async function(req,res)
     }
     //raise error if encountered
     catch(err)
-    { return res.json({})
-                console.log("Error in dashboardContrller->deletePath",err);
+    {
+         console.log("Error in dashboardContrller->deletePath",err);
+         return res.json({})
     }
 
 }
@@ -72,7 +73,7 @@ module.exports.updatePath=async function(req,res)
 {
     try 
     {   
-        console.log(req.body)
+        // console.log(req.body)
         //Authorization check
         // if(req.user.email!="udaysonubakka123@gmail.com")
         // {
@@ -118,7 +119,8 @@ module.exports.updatePath=async function(req,res)
      }
     catch(err)
     {
-        return res.json({})
+        console.log("Error in dashboardController->updatepath",err);
+        return res.json({});
     }
     
 }
@@ -146,8 +148,9 @@ module.exports.showPaths=async function(req,res){
         res.json({paths:paths});
     }
     catch(err)
-    {   res.json({paths:[]})
+    { 
         console.log("Error in dashboardController->showPaths",err);
+        res.json({paths:[]});
     }
    
 }
@@ -208,6 +211,7 @@ module.exports.addpath=function(req,res){
     }
     catch(err){
         console.log("Error in dashboardController->addpath",err);
+        return res.json({isadded:false});
     }
     
 }
@@ -243,7 +247,7 @@ module.exports.specificPath=async function(req,res){
    }
    catch(err)
    {
-    console.log("Error in dashboardControler->specificPath",err);
+       console.log("Error in dashboardControler->specificPath",err);
        return res.json({paths:[]});
    }
     
@@ -331,7 +335,8 @@ module.exports.updateUser=async function(req,res){
     }   
     catch(err)
    {
-       console.log('Error in dashboardController->updateUser',err);
+    console.log('Error in dashboardController->updateUser',err);
+       return res.json({updated:false});
    }
 
 
@@ -357,30 +362,31 @@ module.exports.showUsers=async function(req,res)
     }
     catch(err)
     {
-        // console.log("Error in dashboardController->showUsers",err);
+        console.log("Error in dashboardController->showUsers",err);
+        return res.json({users:[]})
     }
 }
 
 
 
-//function to fetch all bookings
-module.exports.showBookings=async function(req,res){
-    try
-    {   
-        //Authorization check
-        if(req.user.email!="udaysonubakka123@gmail.com")
-        {
-            req.flash("error",'Unauthorized Access!!');
-           return res.redirect("back");
-        }
+// //function to fetch all bookings
+// module.exports.showBookings=async function(req,res){
+//     try
+//     {   
+//         //Authorization check
+//         if(req.user.email!="udaysonubakka123@gmail.com")
+//         {
+//             req.flash("error",'Unauthorized Access!!');
+//            return res.redirect("back");
+//         }
         
-        //fetch all booking from database;
-        var bookings = await Booking.find({}).populate("user_id").sort({createdAt:-1});
-        req.flash("info","Fetched Bookings!")
-        res.render("booking_dashboard",{bookings:bookings});
-    }
-    catch(err)
-    {
+//         //fetch all booking from database;
+//         var bookings = await Booking.find({}).populate("user_id").sort({createdAt:-1});
+//         req.flash("info","Fetched Bookings!")
+//         res.render("booking_dashboard",{bookings:bookings});
+//     }
+//     catch(err)
+//     {
 
-    }
-}
+//     }
+// }

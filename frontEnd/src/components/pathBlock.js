@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 class PathBlock extends Component {
-    state = {  }
+    state = this.props.path
+  
     render() { 
         return ( 
         
         
          <form id={this.props.path._id} onSubmit={this.updateClicked} >
          <span style={{visibility:'hidden'}} id={"message_"+this.props.path._id}>Updated Successful</span>
-
+{console.log(this.props.path)}
          <table class="card_list">
-          <tr><td class="thick">Path_id</td> <td class="thin"> <input type="text" name="id" value={this.props.path._id} readonly/></td></tr>  
-          <tr><td class="thick">Source:</td>             <td class="thin">  <input type='text' name='source' readonly value={this.props.path.source}/> </td></tr>
-          <tr><td class="thick">Destination:</td>        <td class="thin">  <input type='text' name='destination' readonly value={this.props.path.destination}/> </td></tr>
-          <tr><td class="thick">Cost:</td> 	            <td class="thin">   <input type='number' name='cost' required defaultValue={this.props.path.cost}/>  </td></tr>
-          <tr><td class="thick">Distance:</td>           <td class="thin">  <input type='number' name='distance' required defaultValue={this.props.path.distance}/> </td></tr> 
-          <tr><td class="thick">Start Time:</td>         <td class="thin">  <input   name='start_time' required type="text"  defaultValue={this.props.path.start_time}/ >  </td></tr>
-          <tr><td class="thick">End Time:</td>           <td class="thin">   <input   name='end_time' required type="text"  defaultValue={this.props.path.end_time} /></td></tr>
-          <tr><td class="thin" colspan="1"><button  class="btn btn-info" type="submit">Update Path</button></td> 
+          <tr><td class="thick">Path_id</td> <td class="thin"> <input type="text" name="id" value={this.props.path._id} readOnly/></td></tr>  
+          <tr><td class="thick">Source:</td>             <td class="thin">  <input type='text' name='source' readOnly value={this.props.path.source}     /> </td></tr>
+          <tr><td class="thick">Destination:</td>        <td class="thin">  <input type='text' name='destination' readOnly  value={this.props.path.destination}  /> </td></tr>
+          <tr><td class="thick">Cost:</td> 	            <td class="thin">   <input type='number' name='cost' required placeholder={this.props.path.cost}  />  </td></tr>
+          <tr><td class="thick">Distance:</td>           <td class="thin">  <input type='number' name='distance' required placeholder={this.props.path.distance}  /> </td></tr> 
+          <tr><td class="thick">Start Time:</td>         <td class="thin">  <input   name='start_time' required type="text"  placeholder={this.props.path.start_time} / >  </td></tr>
+          <tr><td class="thick">End Time:</td>           <td class="thin">   <input   name='end_time' required type="text"  placeholder={this.props.path.end_time}  /></td></tr>
+          <tr><td class="thin" colspan="1">
+            <button  class="btn btn-info" type="submit">Update Path</button>
+            </td> 
           <td class="thin"><a href="/dashboard/deletePath/<%=path.id%>">
             <button id="delete_btn" onClick={this.deleteclicked} value={this.props.path._id} class='btn btn-danger'>  Delete Path </button>
           </a> </td></tr>

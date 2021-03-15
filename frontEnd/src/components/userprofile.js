@@ -3,6 +3,7 @@ import axios from'axios'
 class UserProfile extends Component {
     state = { token:null,
     user:null }
+ 
     render() { 
         return ( 
             <React.Fragment>
@@ -65,6 +66,7 @@ class UserProfile extends Component {
         password:e.target.password.value,
         name:e.target.name.value,
         mobile:e.target.mobile.value,
+        id:this.state.user._id,
         re_password:e.target.re_password.value, headers: {
             'Authorization':this.state.token
         }})

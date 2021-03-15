@@ -75,10 +75,10 @@ module.exports.signup=function(req,res){
 module.exports.createuser=async function(req,res){
     try
     {
-        console.log("*****************************************************************************")
+         
         user=await User.findOne({email:req.body.email});
         //checking whether user with email already present in database
-        console.log(user,req.body)
+        
         if(user){
            
             // req.flash("error","Email Already Exists")
@@ -96,8 +96,7 @@ module.exports.createuser=async function(req,res){
         //create user in database
         var user=await User.create(req.body)
             
-        console.log("*************************",user)
-
+ 
         if(user!=null)
         {
             mailer.signup_done({user:req.body});
@@ -115,6 +114,7 @@ module.exports.createuser=async function(req,res){
     }
     catch(err){
         console.log("Error in usercontroller->createuser",err);
+        return res.json({isavailable:false});
     }
 
 }
@@ -153,17 +153,17 @@ module.exports.authenticate=function(req,res){
 
 
 //function to render search page
-module.exports.routesearch=function(req,res){
-//if user is authenticated only then show him search page
-   if(req.isAuthenticated())
-   {
-    res.render("search");
-   }
-   else
-   {
-    res.redirect("/user/signin");
-   }
-}
+// module.exports.routesearch=function(req,res){
+// //if user is authenticated only then show him search page
+//    if(req.isAuthenticated())
+//    {
+//     res.render("search");
+//    }
+//    else
+//    {
+//     res.redirect("/user/signin");
+//    }
+// }
 
 
 
@@ -171,43 +171,41 @@ module.exports.routesearch=function(req,res){
 
 
 //function to send information to update user page
-module.exports.update=async function(req,res){
+// module.exports.update=async function(req,res){
      
-   try
-   {    //fetching the user
-        var user=await User.findById(req.user.id);
+//    try
+//    {    //fetching the user
+//         var user=await User.findById(req.user.id);
 
-        if(user)
-        {       
-                return res.render("update",{user:user});
-        }
-        else
-        {
-            res.redirect("/user/routesearch");
-        }
+//         if(user)
+//         {       
+//                 return res.render("update",{user:user});
+//         }
+//         else
+//         {
+//             res.redirect("/user/routesearch");
+//         }
 
-   }
-   catch(err)
-   {
-       if("Error in usercontroller->update",err);
+//    }
+//    catch(err)
+//    {
+//        if("Error in usercontroller->update",err);
 
-   }
+//    }
     
-}
+// }
 
 
 
 //function to update user
 module.exports.update_user= async function(req,res){
-    console.log('update user caleld-------------')
-    
+     
     try{
         //since our form is multi-part data so it could not be read by 
         //normal req.body so we have to add this function to load multipart data
-        await  User.uploadedAvatar(req,res,async function(err)
-        {
-            console.log(req.file)
-
+        // await  User.uploadedAvatar(req,res,async function(err)
+        // {
+ 
             //returning if password and re-password does not match
             if(req.body.password!=req.body.re_password){
                 req.flash("error","Password and Re_password does not match!!!")
@@ -216,7 +214,7 @@ module.exports.update_user= async function(req,res){
             }          
             
             //finding the user in database
-            var user=await User.findById(req.user._id)
+            var user=await User.findById(req.body.id)
 
             //updating the user details
             user.name=req.body.name;
@@ -226,7 +224,7 @@ module.exports.update_user= async function(req,res){
             //if file is present then update the avatar else keep previous avatar
             if(req.file)
             {
-                         user.avatar=User.avatarPath+'/'+req.file.filename;
+                         user.avatar=User.avatarPath+'\\'+Date.now()+req.file.originalname;
                                        
             }
            
@@ -237,7 +235,7 @@ module.exports.update_user= async function(req,res){
             // return res.redirect('back');
             return res.json({isupdated:true})
          
-        })
+        // })
          
      }
     catch(err)
@@ -254,7 +252,7 @@ module.exports.password_recovery=async function(req,res)
 {   
     var user=await User.findOne({email:req.body.email});
     await mailer.password_recovery({user:user});
-    // console.log('passwrod recovery called',user,)
+    console.log('passwrod recovery called',user,)
     // req.flash("success","Password sent to your email ; Please Check");
     return res.json({sent:true});
 }
