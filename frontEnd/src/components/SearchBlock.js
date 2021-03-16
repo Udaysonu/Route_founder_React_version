@@ -43,17 +43,17 @@ var SearchBlock=(propss) => {
                         var cost=document.getElementById("cost_"+props.count).getAttribute('value');
                         var pass=document.getElementById("passengers_"+props.count) ;
                         var cost=parseInt(saver)*parseInt(pass.value);
-                        console.log(saver,pass.value,cost)
+                       
                         e.target.totalprice=cost
                         
                         var ans=window.confirm("The total amout payable is "+cost+ ". Are you sure you want to continue?")
-                        console.log(ans)
+                        
                         if(!ans)
                         {
                             return;
                         }        
                         document.getElementById("cost_"+props.count).setAttribute('value',cost)
-                        console.log(e.target,"0000000000000")
+                        
         
                         props.bookingHandler(e,callhandler)
 

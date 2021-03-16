@@ -16,7 +16,7 @@ class AddPath  extends Component {
                 for(let i=0;i<allinputs.length;i++)
                 {
                     allinputs[i].value=""
-                    console.log(allinputs[i])
+                   
                 }
                 document.getElementById("pathadded_flash").style.visibility='visible';
             }} > 

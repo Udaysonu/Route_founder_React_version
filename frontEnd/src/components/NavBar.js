@@ -7,7 +7,7 @@ function NavBar(props)  {
    var history=useHistory();
    function logout(e)
    {
-       console.log("called")
+       
        history.push("/signin");
    }
    
@@ -42,7 +42,7 @@ function NavBar(props)  {
         );
         function callme()
         {
-            console.log("welcome")
+           
         }
 }
 export default NavBar;

@@ -56,7 +56,7 @@ class UserProfile extends Component {
 
     getInitialState= () =>{
         this.state.token = JSON.parse(window.localStorage.getItem( 'token' )) || null;
-        console.log(this.state.token,this.state.user,"getInitialState")
+    
         axios.post("http://localhost:8000/user/getuser",{ headers: {
             'Authorization':this.state.token
         }}).then(res=>{
@@ -75,8 +75,7 @@ class UserProfile extends Component {
             'Authorization':this.state.token
         }})
         .then(res=>{
-          console.log(res.data,{email:this.state.user.name,password:e.target.password.value})
-          document.getElementById("update_flash").style.visibility='visible';
+           document.getElementById("update_flash").style.visibility='visible';
           axios.post("http://localhost:8000/user/signin",{email:this.state.user.email,password:e.target.password.value}).then(res=>{
             this.state.token=res.data.token;
             this.setSelectedOption(this.state.token)

@@ -42,8 +42,7 @@ class UsersDashboard extends Component {
 
 componentDidMount=()=>{
     axios.get("http://localhost:8000/user/getallusers").then(res=>{
-        console.log("dashboard users called ************************* ",res.data.users)
-        this.state.users=res.data.users;
+         this.state.users=res.data.users;
         this.setState({})
     })
 }
@@ -51,7 +50,7 @@ componentDidMount=()=>{
 callsearch=(e)=>{
     e.preventDefault();
     var details={name:e.target.name.value,email:e.target.email.value}
-    console.log(details);
+    
     axios.post("http://localhost:8000/dashboard/specificuser",details).then(res=>{
         this.state.users=res.data.users;
         this.setState({})

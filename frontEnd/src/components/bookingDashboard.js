@@ -16,17 +16,17 @@ class BookingDashboard extends Component {
     }
     componentDidMount=()=>{
         this.state.token = JSON.parse(window.localStorage.getItem( 'token' )) || null;
-        console.log('booing dashboard mounted')
+         
         axios.post("http://localhost:8000/book/showbooking",{ headers: {
             'Authorization':this.state.token
           }}).then(res=>{
-              console.log("entered",res.data);
+              
                 this.state.bookings=res.data.bookings;
                 // console.log(this.state.bookings)
                 this.setState({})
           })
           
-          console.log("existed")
+          
     }
 }
 

@@ -223,7 +223,7 @@ module.exports.addpath=function(req,res){
 module.exports.specificPath=async function(req,res){
    try 
    {    
-       console.log(req.body)
+      
         // //Authorization check
         // if(req.user.email!="udaysonubakka123@gmail.com")
         // {

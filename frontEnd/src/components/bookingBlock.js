@@ -4,7 +4,7 @@ class BookingBlock extends Component {
     render() { 
         return ( <div class="booking_list">
         
-        {console.log(this.props.booking)}
+      
          <img style={{width:"200px",height:"200px"}} src=""/>
         <span class="thick">Ticket Id : </span><span class="thin">{this.props.booking._id}</span><br/>
         <span class="thick">Name : </span><span class="thin">{this.props.booking.user_id.name}</span><br/>

@@ -9,7 +9,7 @@ class PathBlock extends Component {
         
          <form id={this.props.path._id} onSubmit={this.updateClicked} >
          <span style={{visibility:'hidden'}} id={"message_"+this.props.path._id}>Updated Successful</span>
-{console.log(this.props.path)}
+ 
          <table class="card_list">
           <tr><td class="thick">Path_id</td> <td class="thin"> <input type="text" name="id" value={this.props.path._id} readOnly/></td></tr>  
           <tr><td class="thick">Source:</td>             <td class="thin">  <input type='text' name='source' readOnly value={this.props.path.source}     /> </td></tr>
@@ -35,7 +35,7 @@ class PathBlock extends Component {
         axios.post("http://localhost:8000/dashboard/deletepath",{id:e.target.value}).then(res=>{
         })
 
-        console.log(e.target.value);
+       
       }
 
 
@@ -47,9 +47,9 @@ class PathBlock extends Component {
        e.preventDefault();
       //  console.log(e.target.user_id.value) 
        document.getElementById("message_"+e.target.id.value).setAttribute('style','visibility:visible');
-       console.log('updatecalled')
+       
        axios.post("http://localhost:8000/dashboard/updatepath",{id:e.target.id.value,source:e.target.source.value,destination:e.target.destination.value,cost:e.target.cost.value,distance:e.target.distance.value,start_time:e.target.start_time.value,end_time:e.target.end_time.value}).then(res=>{
-        console.log(e.target)
+        
 
       })
     }

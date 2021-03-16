@@ -33,7 +33,7 @@ import React, { Component } from 'react';
             {/* <!-- <img width=100 height=100 src=<%=user.avatar%>> */}
             
             <form method='post' id={this.props.user._id} onSubmit={(e)=>{this.updateUser(e);    
-            console.log(e.target.user_id.value) 
+          
                document.getElementById("message_"+e.target.user_id.value).setAttribute('style','visibility:visible');}}
                 enctype="multipart/form-data"    >
                   <span style={{visibility:'hidden'}} id={"message_"+this.props.user._id}>Updated Successful</span>
@@ -107,7 +107,7 @@ import React, { Component } from 'react';
          
         })
 
-        console.log(e.target.value);
+        
       }
      refreshPage() {
     // window.location.reload(false);
@@ -115,10 +115,9 @@ import React, { Component } from 'react';
 
      updateUser=(e)=>{
        e.preventDefault();
-       console.log('updatecalled')
+     
        axios.post("http://localhost:8000/dashboard/updateuser",{name:e.target.name.value,mobile:e.target.mobile.value,password:e.target.password.value,email:e.target.email.value,user_id:e.target.user_id.value}).then(res=>{
-        console.log(e.target)
-
+         
       })
     }
 

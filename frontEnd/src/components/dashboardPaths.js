@@ -45,9 +45,9 @@ class AllFlights extends Component {
 
     
 componentDidMount=()=>{
-  console.log("dashboard paths called")
+ 
   axios.post("http://localhost:8000/dashboard/allpaths",{}).then(res=>{
-      console.log("dashboard paths called ************************* ",res.data.paths)
+        
       this.state.paths=res.data.paths;
       this.setState({})
   })
@@ -56,9 +56,9 @@ componentDidMount=()=>{
 callsearch=(e)=>{
   e.preventDefault();
   var details={source:e.target.source.value,destination:e.target.destination.value}
-  console.log(details);
+ 
   axios.post("http://localhost:8000/dashboard/specificpath",details).then(res=>{
-    console.log(res.data)   
+ 
   this.state.paths=res.data.paths;
       this.setState({})
   })
