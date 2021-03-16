@@ -12,7 +12,7 @@ This project is practical implementation of data structures. This website finds 
  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p1.JPG">
  
   * Sign up   (using passport.js)
- <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p3.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p2.JPG">
 
  
  * Password will be sent to your email if you forgot the password for your email_ie
