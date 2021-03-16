@@ -8,78 +8,71 @@ This project is practical implementation of data structures. This website finds 
  
  ## Project Description
  
- * Sign in through Google ( using Google auth ) or Normal Sign In (using passport.js)
- <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/master/webreadme/p1.JPG">
+ * Normal Sign In (using passport.js)
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p1.JPG">
+ 
+  * Sign up   (using passport.js)
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p3.JPG">
+
  
  * Password will be sent to your email if you forgot the password for your email_ie
- <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/master/webreadme/p16.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p16.JPG">
  
  * This app contains two views 1) User View ( Left Image) 2) Admin View ( Right Image). The basic difference between User view and Admin view is Dashboard (wee will see about dashboard later) and Customer care 
  
-<span>  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/master/webreadme/p2.JPG" width="40%"></span><span> <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/two2.JPG" width="40%"></span>
+<span>  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p3.JPG" width="40%"></span><span> <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p4.JPG" width="40%"></span>
 
 
  
  * Search flights between Source to Destination
  
- <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/master/webreadme/p3.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p5.JPG">
  
  * Showing all the flights between Source to Destination 
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/p4.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p6.JPG">
  
  * Allowing user to book the flights
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/p5.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p7.JPG">
  
  * Showing all the tickets booked by the user
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/six.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p8.JPG">
  
- * Chating with Customer Care Service 
   
-   <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one3.JPG">
- 
  * Updating User information
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one8.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p9.JPG">
  
  * Dashboard ( Admin View )
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one1.JPG">
- 
- * Customer Care Service ( Admin View ) Showing all the Customers who are wating to chat with Customer Care
- 
-  <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/oneone.JPG">
-
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p10.JPG">
  
  * View & Search all the tickets ( Admin View)
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one2.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p12.JPG">
  
  * View & Search all the Users (Admin View)
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one6.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p11.JPG">
  
  * Add Path between two different locations (Admin View)
  
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/one7.JPG">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p13.JPG">
  
  * Sending Confirmation Mails
-  <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/two3.JPG" width="80%">
- <img src="https://github.com/Udaysonu/Route_founder/blob/master/webreadme/two4.JPG" width="80%">
+  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p14.JPG" width="80%">
+ <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p15.JPG" width="80%">
 
  
  ## Tools and Technologies used
- 
-  * Google Auth for Google sign in and PassportJs for normal sign in
+  * React.js front end framework
   * NodeMailer for sending confirmation mails
-  * Noty for displaying notifications
   * Bootstrap for designing webpages
   * Node.js (express.js) Backend
   * Html, CSS , Javascript, Jquery for designing webpages
-  * Socket.io for contacting Customer Care
-  
+   
  ## Challenges in the project
   
   Implementing the backend algorithm which is the heart of this project is the major challenge for me . Solving each and every minute problem to make this website appear as
