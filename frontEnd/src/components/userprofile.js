@@ -19,7 +19,11 @@ class UserProfile extends Component {
                 <label style={{color:"red"}} for='name'>Name</label>
                 <input class="input_tag" name='name' onChange={this.onchange} placeholder="Username" defaultValue={this.state.user.name} type='text'/>
             </div>
-
+            <div class='input'>
+            <i class="fas fa-phone"></i>
+            <label style={{color:"red"}} for='mobile'>Email</label>
+            <input name='email' class="input_tag"  placeholder="Email" value={this.state.user.email} type='text'/ >
+        </div>
       
         <div class='input'>
             <i class="fas fa-phone"></i>

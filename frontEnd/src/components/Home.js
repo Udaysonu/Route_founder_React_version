@@ -5,6 +5,10 @@ import "../componentJs/search.js"
 
 class Home extends Component {
     state = {  count:0}
+    datesetter(e)
+    {
+      window.localStorage.setItem( 'date', e.target.value);
+    }
     render() { 
         return ( 
 
@@ -53,7 +57,7 @@ class Home extends Component {
           </select></div>
           <br/>
   
-          <div class='input inline inline-r'><span style={{color:"black"}}>Date:</span> <input   type="date" name="date" min="2020-10-15" max="2020-11-20" id="datepicker"/></div>
+          <div class='input inline inline-r'><span style={{color:"black"}}>Date:</span> <input  required  type="date" name="date" min="2021-03-16" max="2021-11-11" onChange={this.datesetter} id="datepicker"/></div>
   
          <div class='input inline' >
           <button type="submit"  class="btn_ pad">Search</button>

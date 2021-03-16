@@ -242,7 +242,7 @@ module.exports.specificPath=async function(req,res){
         
         //fetch paths upon given details
         var paths=await Paths.find(details);
-        console.log(paths)
+         
         return res.json({paths:paths});
    }
    catch(err)

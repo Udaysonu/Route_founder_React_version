@@ -14,20 +14,20 @@ function NavBar(props)  {
         return (  
             <React.Fragment >
             <nav class="header_nav">
-                <span><b style={{padding:'3px',border:'2px double white',borderRadius:"10px"}}>AeroBook</b></span>
+                <span ><b class="nav_text" style={{padding:'3px',border:'2px double white',borderRadius:"10px"}}>AeroBook</b></span>
                 
                     <span class="left_nav" id="left_nv">
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                                 <i class="fa fa-bars"></i>
                         </a>
                         <a class="nav_link" href="/user/routesearch"> 
-                            <span ><Link className="hover_span"  to={'/'}>Home</Link></span> </a>
+                            <span ><Link className="hover_span nav_text"  to={'/'}>Home</Link></span> </a>
                             {props.user[0]!=null  && props.user[0]!='null' ?
-                           <span>  <Link className="hover_span" to={"/dashboard/booking"}>Bookings</Link> 
-                                                      {(props.user[0]!=null  && props.user[0]!='null' && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link style={{textDecoration:'none'}} className="hover_span" to={'/dashboard'} >Dashboard</Link></span></a>}
+                           <span>  <Link className="hover_span nav_text" to={"/dashboard/booking"}>Bookings</Link> 
+                                                      {(props.user[0]!=null  && props.user[0]!='null' && props.user[0].email=="udaysonubakka123@gmail.com") && <a class="nav_link"><span class="hover_span btn_link_red"><Link style={{textDecoration:'none'}} className="hover_span nav_text" to={'/dashboard'} >Dashboard</Link></span></a>}
 
   
-                            <a class="nav_link"  >  <span class="hover_span"><Link className="hover_span" to={'/user/userprofile'}>{props.user[0]!=null && props.user[0]!='null'  ?props.user[0].name:"false"} Profile </Link> </span></a>
+                            <a class="nav_link"  >  <span class="hover_span"><Link className="hover_span nav_text" to={'/user/userprofile'}>{props.user[0]!=null && props.user[0]!='null'  ?props.user[0].name:"false"} Profile </Link> </span></a>
                              <a class="nav_link" type="button" ><span class="hover_span btn_link_red" type="button"   ><button class="btn-danger" onClick={()=>{props.logout(logout)}}>Log Out</button></span></a>
                               </span>      :<span>
                             <a class="nav_link"><span class="hover_span btn_link_red"><Link className="hover_span" to={'/signin'} >Sign In</Link></span></a>

@@ -11,7 +11,7 @@ var SearchBlock=(propss) => {
     function callhandler()
 	{
 		// history.push("/book/booking")
-       
+
        
 	}
     return (  
@@ -47,14 +47,17 @@ var SearchBlock=(propss) => {
                         e.target.totalprice=cost
                         
                         var ans=window.confirm("The total amout payable is "+cost+ ". Are you sure you want to continue?")
+                        console.log(ans)
                         if(!ans)
                         {
                             return;
                         }        
-                                
-                    props.bookingHandler(e,callhandler)
-                    var cost=document.getElementById("message_"+props.count).setAttribute('style','textAlign:"center";color:"yellow";fontWeight:"bolder";fontSize:"20px";visibility:visible');
+                        document.getElementById("cost_"+props.count).setAttribute('value',cost)
+                        console.log(e.target,"0000000000000")
+        
+                        props.bookingHandler(e,callhandler)
 
+                    var cost=document.getElementById("message_"+props.count).setAttribute('style','textAlign:"center";color:"yellow";fontWeight:"bolder";fontSize:"20px";visibility:visible');
                     }} method='post'>
                  
                 <select  class="input_tag pad" style={{backgroundColor:'white'}}   id={"passengers_"+props.count} name='passengers'>

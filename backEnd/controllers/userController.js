@@ -19,12 +19,9 @@ const mailer=require("../mailer/nodemailer")
 
 module.exports.checkAuth=function(req,res)
 {
-    console.log(res.user,res.user)
-  console.log(req.isAuthenticated())
-    if(req.isAuthenticated())
+     if(req.isAuthenticated())
     {
-        console.log(req.user,"!!!!!!!!!!!!!!!!!!")
-        return res.json({isavailable:true,user:req.user});
+         return res.json({isavailable:true,user:req.user});
     }
     else{
         return res.json({isavailable:false,user:null});

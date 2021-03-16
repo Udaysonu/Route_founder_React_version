@@ -11,11 +11,14 @@ $(document).ready(function(){
         if (scroll > 20) {
           $(".header_nav").css("background" , "rgba(230, 230, 230,1)");
           $(".header_nav span").css("color" , "black");
+          $(".nav_text").css("color" , "black");
         }
   
         if(scroll<20){
             $(".header_nav").css("background" , "none");  	
             $(".header_nav span").css("color" , "white");
+            $(".nav_text").css("color" , "white");
+
         }
     })
     $(".hover_span").on({

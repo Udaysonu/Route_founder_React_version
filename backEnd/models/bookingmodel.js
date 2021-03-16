@@ -19,6 +19,7 @@ var bookingSchema=new Schema({
     date:{
             type:Date
     },
+     
     start_time:{
             type:String,required:true
     },

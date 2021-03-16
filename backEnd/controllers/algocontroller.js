@@ -445,7 +445,7 @@ module.exports.path_eval=function(req,res)
 
       for(let count=0;count<waiting_time.length;count++)
       {
-          console.log(time[count])
+           
         details={}
         details.start_time=time[count][0]
         details.end_time=time[count][1]
@@ -472,7 +472,7 @@ module.exports.path_eval=function(req,res)
         details.paths=paths_;
         output.push(details);
       }
-      console.log(output)
+     
      return res.json(output);
   
     }

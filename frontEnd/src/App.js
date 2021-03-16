@@ -231,13 +231,22 @@ setSelectedOption=function( option ){
 bookingHandler=(e,cb)=>{
   e.preventDefault();
  var book={user_id:e.target.user_id.value
-    ,cost:e.target.totalprice.value,
+    ,
+    cost:e.target.cost.value,
     passengers:e.target.passengers.value,
     path:e.target.path.value,
    
-    start_time:e.target.start_time.value,end_time:e.target.end_time.value,journey_time:e.target.journey_time.value,wait_time:e.target.wait_time.value,travel_time:e.target.travel_time.value}
+    start_time:e.target.start_time.value,
+    end_time:e.target.end_time.value,
+    journey_time:e.target.journey_time.value,
+    wait_time:e.target.wait_time.value,
+    travel_time:e.target.travel_time.value,
+    date:window.localStorage.getItem( 'date' ),
+    order_time:new Date()
+  }
+  
   // console.log(book,this.state.user)
-  console.log("enered handler",e.target.cost)
+  console.log("enered handler",window.localStorage.getItem( 'date' ))
   // console.log("booking clicked",e.target)
   axios.post("http://localhost:8000/book/order",{headers: {
     'Authorization':this.state.token},booking:book}).then(res=>{

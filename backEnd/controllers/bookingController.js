@@ -10,7 +10,7 @@ var nodemailer=require("../mailer/nodemailer");
 module.exports.showBookings=function(req,res)
 {   
     if(req.user){
-        console.log("(((((((((((((((((((((((((((((((((")
+       
         Booking.find({user_id:req.user._id}).sort({createdAt:-1}).exec(function(err,bookings)
         {
             if(err)
@@ -30,18 +30,17 @@ module.exports.showBookings=function(req,res)
 }
 module.exports.showAllBookings=function(req,res)
 {              
-     console.log("ente-----------------------------------------s",req.user)
+     
 
     if(req.user){
-        Booking.find({}).sort({createdAt:-1}).exec(function(err,bookings)
+        Booking.find({}).populate('user_id').sort({createdAt:-1}).exec(function(err,bookings)
         {
-            console.log(err,bookings)
+            
             if(err)
             {
                 console.log("Error in bookingcontroller->showBookings",err);
             }
-            console.log("ente----------------------------------------e-")
-            // console.log(bookings)
+            
             res.json({bookings:bookings})
         })
         
@@ -56,7 +55,7 @@ module.exports.showAllBookings=function(req,res)
 
 //function to create booking in te database;
 module.exports.orderbook=function(req,res)
-{    console.log("book now",req.body.booking)
+{    
     if(req.user)
     {
         // req.body.booking.date=req.cookies.chosenDate
@@ -74,12 +73,12 @@ module.exports.orderbook=function(req,res)
         //then we have to add this booking into the booking list of the user who created it
         if(book)
         {   
-            console.log(req.user._id)
+            
             //finding the user using authentication id
             User.findById(req.user._id,function(err,user)
             {
                 
-                console.log("user controller",user,err)
+               
                 //pushing the booking into his booking records
                 user.bookings.push(book);
                 //saving the database
