@@ -20,7 +20,7 @@ This project is practical implementation of data structures. This website finds 
  
  * This app contains two views 1) User View ( Left Image) 2) Admin View ( Right Image). The basic difference between User view and Admin view is Dashboard (wee will see about dashboard later) and Customer care 
  
-<span>  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p3.JPG" width="40%"></span><span> <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p4.JPG" width="40%"></span>
+<span>  <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p4.JPG" width="40%"></span><span> <img src="https://github.com/Udaysonu/Route_founder_React_version/blob/main/webreadme/p3.JPG" width="40%"></span>
 
 
  
