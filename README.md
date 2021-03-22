@@ -1,8 +1,8 @@
 # Route_founder
 Practical implementation of Data Structures Like Graphs, Linked List, Array, etc,.
-## This version of Route_finder was made with React.js in it. There is a plane version of this project.
+## This version of Route_finder was made with React.js in it. There is other version of this project without using React.js.
 LINK:-
-https://github.com/Udaysonu/Route_founder/blob/master/README.md
+https://github.com/Udaysonu/Route_founder
 
 ## Project Introduction
 This project is practical implementation of data structures. This website finds the route between various airports located in different parts of India. It connects the nodes(cities)
@@ -78,8 +78,7 @@ This project is practical implementation of data structures. This website finds 
    
  ## Challenges in the project
   
-  Implementing the backend algorithm which is the heart of this project is the major challenge for me . Solving each and every minute problem to make this website appear as
-  real-life website
+ Adding the React.js to the previously done project by making a few changes so that the working of the website don't break.
   
  ## Number of people in the project
  
